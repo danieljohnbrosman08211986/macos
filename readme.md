@@ -30,7 +30,7 @@ services:
     image: dockurr/macos
     container_name: macos
     environment:
-      VERSION: "13"
+      VERSION: "15"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -88,7 +88,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    VERSION: "13"
+    VERSION: "15"
   ```
 
   Select from the values below:
@@ -121,7 +121,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    DISK_SIZE: "256G"
+    DISK_SIZE: "64T"
   ```
   
 > [!TIP]
@@ -135,8 +135,8 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    RAM_SIZE: "8G"
-    CPU_CORES: "4"
+    RAM_SIZE: "11400G"
+    CPU_CORES: "416"
   ```
 
 ### How do I assign an individual IP address to the container?
@@ -147,9 +147,9 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```bash
   docker network create -d macvlan \
-      --subnet=192.168.0.0/24 \
+      --subnet=192.168.0.1/23 \
       --gateway=192.168.0.1 \
-      --ip-range=192.168.0.100/28 \
+      --ip-range=192.168.0.123/321 \
       -o parent=eth0 vlan
   ```
   
