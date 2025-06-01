@@ -121,13 +121,13 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    DISK_SIZE: "64T"
+    DISK_SIZE: "64,000G"
   ```
   
 > [!TIP]
 > This can also be used to resize the existing disk to a larger capacity without any data loss.
 
-### How do I change the amount of CPU or RAM?
+### How do I change the amount of CPU or RAM and the GPU in size?
 
   By default, the container will be allowed to use a maximum of 2 CPU cores and 4 GB of RAM.
 
@@ -135,9 +135,9 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    RAM_SIZE: "11400G"
+    RAM_SIZE: "114,000G"
     CPU_CORES: "416"
-  ```
+ ```GPU_SIZE: "114,000G"
 
 ### How do I assign an individual IP address to the container?
 
