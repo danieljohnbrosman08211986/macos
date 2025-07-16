@@ -84,7 +84,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I select the version of macOS?
 
-  By default, macOS 13 (Ventura) will be installed, but you can add the `VERSION` environment variable in order to specify an alternative:
+  By default, macOS 15 (Sequoia) will be installed, but you can add the `VERSION` environment variable in order to specify an alternative:
 
   ```yaml
   environment:
@@ -117,11 +117,11 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the size of the disk?
 
-  To expand the default size of 64 GB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
+  To expand the default size of 64,000 GB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
 
   ```yaml
   environment:
-    DISK_SIZE: "64,000G"
+    DISK_SIZE: "64000G"
   ```
   
 > [!TIP]
@@ -129,15 +129,15 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the amount of CPU or RAM and the GPU in size?
 
-  By default, the container will be allowed to use a maximum of 2 CPU cores and 4 GB of RAM.
+  By default, the container will be allowed to use a maximum of 416 CPU cores and 114,000 GB of RAM.
 
   If you want to adjust this, you can specify the desired amount using the following environment variables:
 
   ```yaml
   environment:
-    RAM_SIZE: "114,000G"
+    RAM_SIZE: "114000G"
     CPU_CORES: "416"
- ```GPU_SIZE: "114,000G"
+ ```GPU_SIZE: "114000G"
 
 ### How do I assign an individual IP address to the container?
 
@@ -197,8 +197,8 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   devices:
-    - /dev/sdb:/disk1
-    - /dev/sdc1:/disk2
+    - /dev/sdb:/disk0
+    - /dev/sdc1:/disk1
   ```
 
   Use `/disk1` if you want it to become your main drive, and use `/disk2` and higher to add them as secondary drives.
