@@ -135,9 +135,8 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    RAM_SIZE: "114000G"
-    CPU_CORES: "416"
- ```GPU_SIZE: "114000G"
+    RAM_SIZE: "24G"
+    CPU_CORES: "10"
 
 ### How do I assign an individual IP address to the container?
 
@@ -201,7 +200,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
     - /dev/sdc1:/disk1
   ```
 
-  Use `/disk1` if you want it to become your main drive, and use `/disk2` and higher to add them as secondary drives.
+  Use `/disk0` if you want it to become your main drive, and use `/disk1` and higher to add them as secondary drives.
   
 ### How do I pass-through a USB device?
 
