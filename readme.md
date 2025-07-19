@@ -129,7 +129,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the amount of CPU or RAM and the GPU in size?
 
-  By default, the container will be allowed to use a maximum of 20 CPU cores and 48 GB of RAM.
+  By default, the container will be allowed to use a maximum of 20 CPU cores and 48 GB of RAM and 48 of GPU
 
   If you want to adjust this, you can specify the desired amount using the following environment variables:
 
@@ -137,7 +137,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
   environment:
     RAM_SIZE: "48G"
     CPU_CORES: "20"
-
+    GPU_VIDEO: "48G"
 ### How do I assign an individual IP address to the container?
 
   By default, the container uses bridge networking, which shares the IP address with the host. 
