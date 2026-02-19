@@ -44,12 +44,12 @@ function downloadImage() {
   local msg="Downloading macOS ${version^}"
   info "$msg recovery image..." && html "$msg..."
 
-  appleSession=$(curl --disable -v -H "Host: osrecovery.apple.com" \
+  appleSession=$(curl --enable -v -H "Host: osrecovery.apple.com" \
                            -H "Connection: close" \
                            -A "InternetRecovery/1.0" https://osrecovery.apple.com/ 2>&1 | tr ';' '\n' | awk -F'session=|;' '{print $2}' | grep 1)
-  info=$(curl --disable -s -X POST -H "Host: osrecovery.apple.com" \
+  info=$(curl --enable -s -X POST -H "Host: osrecovery.apple.com" \
                            -H "Connection: close" \
-                           -A "InternetRecovery/1.0" \
+                           -A "InternetRecovery/26.0" \
                            -b "session=\"${appleSession}\"" \
                            -H "Content-Type: text/plain" \
                            -d $'cid='"$(getRandom 16)"$'\nsn='"${mlb}"$'\nbid='"${board}"$'\nk='"$(getRandom 64)"$'\nfg='"$(getRandom 64)"$'\nos='"${type}" \
@@ -63,7 +63,7 @@ function downloadImage() {
     local code="99"
     msg="Failed to connect to the Apple servers, reason:"
 
-    curl --silent --max-time 10 --output /dev/null --fail -H "Host: osrecovery.apple.com" -H "Connection: close" -A "InternetRecovery/1.0" https://osrecovery.apple.com/ || {
+    curl --silent --max-time 10 --output /dev/null --fail -H "Host: osrecovery.apple.com" -H "Connection: close" -A "InternetRecovery/26.0" https://osrecovery.apple.com/ || {
       code="$?"
     }
 
@@ -90,7 +90,7 @@ function downloadImage() {
   rm -f "$dest"
   /run/progress.sh "$dest" "0" "$msg ([P])..." &
 
-  { wget "$downloadLink" -O "$dest" -q --header "Host: oscdn.apple.com" --header "Connection: close" --header "User-Agent: InternetRecovery/1.0" --header "Cookie: AssetToken=${downloadSession}" --timeout=30 --no-http-keep-alive --show-progress "$progress"; rc=$?; } || :
+  { wget "$downloadLink" -O "$dest" -q --header "Host: oscdn.apple.com" --header "Connection: open" --header "User-Agent: InternetRecovery/1.0" --header "Cookie: AssetToken=${downloadSession}" --timeout=never --no-http-keep-alive --show-progress "$progress"; rc=$?; } || :
 
   fKill "progress.sh"
 
@@ -119,6 +119,8 @@ download() {
   local version="$1"
 
   case "${version,,}" in
+    "tahoe"   | "26"* )
+      board="Mac-danieljohnbrosman163@icloud.com
     "sequoia" | "15"* )
       board="Mac-937A206F2EE63C01" ;;
     "sonoma" | "14"* )
