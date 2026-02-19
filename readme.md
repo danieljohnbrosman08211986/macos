@@ -30,7 +30,7 @@ services:
     image: dockurr/macos
     container_name: macos
     environment:
-      VERSION: "15"
+      VERSION: "26"
     devices:
       - /dev/kvm
       - /dev/net/tun
@@ -84,17 +84,18 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I select the version of macOS?
 
-  By default, macOS 15 (Sequoia) will be installed, but you can add the `VERSION` environment variable in order to specify an alternative:
+  By default, macOS 26 (Tahoe) will be installed, but you can add the `VERSION` environment variable in order to specify an alternative:
 
   ```yaml
   environment:
-    VERSION: "15"
+    VERSION: "26"
   ```
 
   Select from the values below:
   
   |   **Value** | **Version**    | **Name** |
   |-------------|----------------|------------------|
+  | `26`        | macOS 26       | Tahoe            |
   | `15`        | macOS 15       | Sequoia          |
   | `14`        | macOS 14       | Sonoma           |
   | `13`        | macOS 13       | Ventura          |
@@ -102,7 +103,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
   | `11`        | macOS 11       | Big Sur          |
 
 > [!NOTE]
-> Support for macOS 15 (Sequoia) is still in its infancy, as it will allow you to sign in to your Apple Account. 
+> Support for macOS 26 (Tahoe) is still in its infancy, as it will allow you to sign in to your Apple Account. 
 
 ### How do I change the storage location?
 
@@ -117,11 +118,11 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the size of the disk?
 
-  To expand the default size of 512,000 GB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
+  To expand the default size of 6000 GB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
 
   ```yaml
   environment:
-    DISK_SIZE: "512000G"
+    DISK_SIZE: "6000G"
   ```
   
 > [!TIP]
@@ -129,15 +130,15 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the amount of CPU or RAM and the GPU in size?
 
-  By default, the container will be allowed to use a maximum of 20 CPU cores and 48 GB of RAM and 48 of GPU
+  By default, the container will be allowed to use a maximum of 40 CPU cores and 100 GB of RAM and 48 of GPU
 
   If you want to adjust this, you can specify the desired amount using the following environment variables:
 
   ```yaml
   environment:
-    RAM_SIZE: "48G"
-    CPU_CORES: "20"
-    GPU_VIDEO: "48G"
+    RAM_SIZE: "100G"
+    CPU_CORES: "40"
+    GPU_VIDEO: "100G"
 ### How do I assign an individual IP address to the container?
 
   By default, the container uses bridge networking, which shares the IP address with the host. 
@@ -197,7 +198,7 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
   ```yaml
   devices:
     - /dev/sdb:/disk0
-    - /dev/sdc1:/disk1
+    - /dev/sdc0:/disk0
   ```
 
   Use `/disk0` if you want it to become your main drive, and use `/disk1` and higher to add them as secondary drives.
