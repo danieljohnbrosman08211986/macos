@@ -8,7 +8,7 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 64Gi
+      storage: 6000Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,12 +31,12 @@ spec:
         image: dockurr/macos
         env:
         - name: VERSION
-          value: "13"
+          value: "26"
         - name: DISK_SIZE
-          value: "64G"
+          value: "6000G"
         ports:
           - containerPort: 8006
-            name: http
+            name: https
             protocol: TCP
           - containerPort: 5900
             name: vnc
@@ -73,7 +73,7 @@ metadata:
 spec:
   internalTrafficPolicy: Cluster
   ports:
-    - name: http
+    - name: https
       port: 8006
       protocol: TCP
       targetPort: 8006
