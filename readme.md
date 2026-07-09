@@ -136,9 +136,9 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
   ```yaml
   environment:
-    RAM_SIZE: "100G"
-    CPU_CORES: "40"
-    GPU_VIDEO: "100G"
+    RAM_SIZE: "512G"
+    CPU_CORES: "512"
+    GPU_VIDEO: "512G"
 ### How do I assign an individual IP address to the container?
 
   By default, the container uses bridge networking, which shares the IP address with the host. 
