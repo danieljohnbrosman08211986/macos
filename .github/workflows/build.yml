@@ -26,9 +26,9 @@ jobs:
     needs: shellcheck
     runs-on: ubuntu-latest
     permissions:
-      actions: write
-      packages: write
-      contents: read
+      actions: read/write
+      packages: read/write
+      contents: read/write
     steps:
       -
         name: Checkout
@@ -73,8 +73,8 @@ jobs:
         with:
           context: .
           push: true
-          provenance: false
-          platforms: linux/amd64
+          provenance: true
+          platforms: linux/amd64/intel
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
