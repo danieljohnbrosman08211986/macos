@@ -1,0 +1,25 @@
+# fly.toml app configuration file generated for macos-p1kfta on 2026-11-21T07:12:15Z
+#
+# See https://docs.fly.io/reference/configuration for information about how to use this file.
+#
+
+app = 'macos-p1kfta'
+primary_region = 'iad'
+
+[build]
+[[mounts]]
+  source = 'storage'
+  destination = '/storage'
+
+[http_service]
+  internal_port = 5900
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
