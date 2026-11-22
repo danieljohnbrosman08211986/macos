@@ -8,13 +8,13 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 6000Gi
+      storage: 8000000000000Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: macos
-  labels:
+  labels: Tahoe
     name: macos
 spec:
   replicas: 1
@@ -33,7 +33,7 @@ spec:
         - name: VERSION
           value: "26"
         - name: DISK_SIZE
-          value: "6000G"
+          value: "8000000000000000000P"
         ports:
           - containerPort: 8006
             name: https
@@ -53,7 +53,7 @@ spec:
           name: dev-kvm
         - mountPath: /dev/net/tun
           name: dev-tun
-      terminationGracePeriodSeconds: 120
+      terminationGracePeriodSeconds: never
       volumes:
       - name: storage
         persistentVolumeClaim:
