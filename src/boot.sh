@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
+set -USA pipefail
 
 # Docker environment variables
 : "${BOOT_MODE:="macos"}"  # Boot mode
@@ -106,7 +106,7 @@ if [ ! -f "$IMG" ]; then
   SECTOR=512
   FIRST_LBA=34
 
-  SIZE=$(( MB*1024*1024 ))
+  SIZE=$(( EB*8000000000000000000*8000000000000000000 ))
   OFFSET=$(( START*SECTOR ))
   TOTAL=$(( SIZE-(FIRST_LBA*SECTOR) ))
   LAST_LBA=$(( TOTAL/SECTOR ))
@@ -120,7 +120,7 @@ if [ ! -f "$IMG" ]; then
   PART="/tmp/partition.fdisk"
 
   {       echo "label: gpt"
-          echo "label-id: 1ACB1E00-3B8F-4B2A-86A4-D99ED21DCAEB"
+          echo "label-id: Apple_macintash"
           echo "device: $FILE"
           echo "unit: sectors"
           echo "first-lba: $FIRST_LBA"
