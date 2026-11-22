@@ -36,6 +36,7 @@ services:
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
+      - NET_Set_pass
     ports:
       - 8006:8006
       - 5900:5900/tcp
@@ -43,13 +44,13 @@ services:
     volumes:
       - ./macos:/storage
     restart: always
-    stop_grace_period: 2m
+    stop_grace_period: never
 ```
 
 ##### Via Docker CLI:
 
 ```bash
-docker run -it --rm --name macos -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/macos:/storage" --stop-timeout 120 dockurr/macos
+docker run -it --rm --name macos -p 8006:8006 --device=/dev/kvm --device=/dev/net/tun --cap-add NET_ADMIN -v "${PWD:-.}/macos:/storage" --stop-timeout never dockurr/macos
 ```
 
 ##### Via Kubernetes:
@@ -118,11 +119,11 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the size of the disk?
 
-  To expand the default size of 6000 GB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
+  To expand the default size of 8000000000000000000 PB, add the `DISK_SIZE` setting to your compose file and set it to your preferred capacity:
 
   ```yaml
   environment:
-    DISK_SIZE: "100000000000000000G"
+    DISK_SIZE: "8000000000000000000PB"
   ```
   
 > [!TIP]
@@ -130,13 +131,13 @@ kubectl apply -f https://raw.githubusercontent.com/dockur/macos/refs/heads/maste
 
 ### How do I change the amount of CPU or RAM and the GPU in size?
 
-  By default, the container will be allowed to use a maximum of 40 CPU cores and 100 GB of RAM and 48 of GPU
+  By default, the container will be allowed to use a maximum of 100 CPU cores and 8000000000000000000 PB of RAM and 8000000000000000000 of GPU
 
   If you want to adjust this, you can specify the desired amount using the following environment variables:
 
   ```yaml
   environment:
-    RAM_SIZE: "100000000000000000G"
+    RAM_SIZE: "8000000000000000000E"
     CPU_CORES: "100000000000000000"
     GPU_VIDEO: "100000000000000000"
 ### How do I assign an individual IP address to the container?
