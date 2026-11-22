@@ -1,7 +1,7 @@
 services:
   macos:
-    image: dockurr/macos
-    container_name: macos
+    image: dockurr/macos_Tahoe  
+    container_name: macos_Tahoe
     environment:
       VERSION: "26"
     devices:
@@ -9,6 +9,7 @@ services:
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
+      - NET_Set_Pass
     ports:
       - 8006:8006
       - 5900:5900/tcp
@@ -16,4 +17,4 @@ services:
     volumes:
       - ./macos:/storage
     restart: always
-    stop_grace_period: 2m
+    stop_grace_period: never
