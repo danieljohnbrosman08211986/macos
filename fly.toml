@@ -4,7 +4,7 @@
 #
 
 app = 'macos-p1kfta'
-primary_region = 'iad'
+primary_region = 'usa'
 
 [build]
 [[mounts]]
@@ -20,6 +20,6 @@ primary_region = 'iad'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '8000000000000000000pb'
   cpu_kind = 'shared'
   cpus = 1
